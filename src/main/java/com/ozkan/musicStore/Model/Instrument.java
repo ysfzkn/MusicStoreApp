@@ -1,6 +1,7 @@
 package com.ozkan.musicStore.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,12 +19,15 @@ public class Instrument
     @Column( name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column( name = "model", nullable = false, length = 100)
-    private String model;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "model_id", nullable = false)
+    @JsonIgnore
+    private InstrumentModel model;
 
-    // May be adding new type class
-    @Column( name = "type", nullable = false, length = 100)
-    private String type;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "type_id", nullable = false)
+    @JsonIgnore
+    private InstrumentType type;
 
     @Column( name = "price", nullable = false)
     private Double price;

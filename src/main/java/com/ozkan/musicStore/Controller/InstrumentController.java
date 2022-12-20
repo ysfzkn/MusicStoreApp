@@ -1,5 +1,6 @@
 package com.ozkan.musicStore.Controller;
 
+import com.ozkan.musicStore.DTO.InstrumentDto;
 import com.ozkan.musicStore.Model.Instrument;
 import com.ozkan.musicStore.Service.InstrumentServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,12 @@ public class InstrumentController
         this.bytes = file.getBytes();
     }
     @PostMapping // instrument POST
-    public ResponseEntity<?> saveInstrument(@RequestBody Instrument instrument)
+    public ResponseEntity<?> saveInstrument(@RequestBody InstrumentDto instrumentDto)
     {
-        instrument.setPicByte(this.bytes);
-        instrumentService.saveInstrument(instrument);
+        instrumentDto.setPicByte(this.bytes);
+        instrumentService.saveInstrument(instrumentDto);
         this.bytes = null;
-        return new ResponseEntity<>(instrument, HttpStatus.CREATED);
+        return new ResponseEntity<>(instrumentDto, HttpStatus.CREATED);
     }
 
 

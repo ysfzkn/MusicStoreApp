@@ -1,5 +1,6 @@
 package com.ozkan.musicStore.Controller;
 
+import com.ozkan.musicStore.DTO.PurchaseHistoryDto;
 import com.ozkan.musicStore.Model.PurchaseHistory;
 import com.ozkan.musicStore.Security.UserPrincipal;
 import com.ozkan.musicStore.Service.PurchaseHistoryServiceI;
@@ -17,9 +18,9 @@ public class PurchaseHistoryController
     private PurchaseHistoryServiceI purchaseHistoryService;
 
     @PostMapping //purchase-history
-    public ResponseEntity<?> savePurchaseHistory(@RequestBody PurchaseHistory purchaseHistory)
+    public ResponseEntity<?> savePurchaseHistory(@RequestBody PurchaseHistoryDto purchaseHistoryDto)
     {
-        return new ResponseEntity<>(purchaseHistoryService.savePurchaseHistory(purchaseHistory),
+        return new ResponseEntity<>(purchaseHistoryService.savePurchaseHistory(purchaseHistoryDto),
                 HttpStatus.CREATED);
     }
 

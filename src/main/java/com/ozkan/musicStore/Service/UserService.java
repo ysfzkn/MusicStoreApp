@@ -24,7 +24,6 @@ public class UserService implements UserServiceI
     @Override
     public User saveUser(User user)
     {
-
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(Role.USER); // Default role defined
         user.setCreateTime(LocalDateTime.now());
